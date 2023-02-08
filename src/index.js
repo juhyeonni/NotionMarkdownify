@@ -12,6 +12,10 @@ dotenv.config();
 
 import * as method from './method.js';
 
+/** TODO: Validate env variables
+ * 1. 
+ */
+
 // Create a new Notion client instance
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
