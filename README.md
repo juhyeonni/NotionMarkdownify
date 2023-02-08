@@ -3,11 +3,11 @@
 NotionMarkdownify is a program that allows you to autoconvert a Notion page to a Markdown file. The program is composed of two source codes, one is the main program, and the other is the method module.
 ## Getting Started
 
-    Install the required packages by running npm install in your terminal.
+  Install the required packages by running npm install in your terminal.
 
-    Set up your Notion API token by adding it to your .env file. You can find more information on how to obtain your API token in the Notion API documentation.
+  Set up your Notion API token by adding it to your .env file. You can find more information on how to obtain your API token in the Notion API documentation.
 
-    Run the program by typing node index.js in your terminal.
+  Run the program by typing node index.js in your terminal.
 
 ## How it Works
 
