@@ -12,3 +12,13 @@ const notion = new Client({
 
 // Create a new NotionToMarkdown instance
 const n2m = new NotionToMarkdown({ notionClient: notion });
+
+/* Implementations */
+//
+//
+//
+//
+/*                 */
+
+// Methods
+method.block_to_markdown('9c9a0ae8c3ba4334b0b161b9861e9413', n2m);
