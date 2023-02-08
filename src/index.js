@@ -41,9 +41,16 @@ async function main() {
   switch (inputMethod) {
     case 'help':
     case undefined:
-      console.error(`
-        Usage:  node COMMAND PAGE_ID BUILD_LOCATION
-      `);
+      console.error(
+        `Usage:  node Commands PAGE_ID BUILD_LOCATION
+        
+        Commands:
+          page\t\tconvert notion page to markdown
+        
+        PAGE_ID: expect notion page-id or block-id
+      
+        BUILD_LOCATION: expect build location(directory)
+        `);
       break;
 
     case 'page':
