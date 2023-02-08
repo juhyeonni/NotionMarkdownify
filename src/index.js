@@ -13,7 +13,7 @@ dotenv.config();
  * 5. argv[4]: build location
  * */ 
 const inputMethod = process.argv[2];
-const page = process.argv[3];
+const pageId = process.argv[3];
 const buildLocation = process.argv[4] ?? 'build';
 
 /** TODO: Validate env variables
