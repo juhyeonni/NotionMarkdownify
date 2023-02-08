@@ -38,7 +38,7 @@ async function run() {
   /* Implementations */
   switch (inputMethod) {
     case 'page':
-      await method.block_to_markdown(page, buildLocation, n2m);
+      await method.block_to_markdown(pageId, buildLocation, n2m);
       break;
 
     default:
