@@ -4,7 +4,10 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 /** TODO: Start-up method setting
- *
+ * 1. argv[0]: expect node.exe
+ * 2. argv[1]: expect arguments.js
+ * 3. argv[2]: method command
+ * 4. argv[3]: pageid or blockid
  * */ 
 
 import * as method from './method.js';
