@@ -34,6 +34,7 @@ const notion = new Client({
 // Create a new NotionToMarkdown instance
 const n2m = new NotionToMarkdown({ notionClient: notion });
 
+// FIXME: Error Handling
 // Main method
 async function main() {
   /* Implementations */
