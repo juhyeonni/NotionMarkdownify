@@ -34,7 +34,8 @@ const notion = new Client({
 // Create a new NotionToMarkdown instance
 const n2m = new NotionToMarkdown({ notionClient: notion });
 
-async function run() {
+// Main method
+async function main() {
   /* Implementations */
   switch (inputMethod) {
     case 'page':
@@ -49,4 +50,4 @@ async function run() {
   console.log(`Completed build to ${buildLocation}`)
 }
 
-run();
+main();
