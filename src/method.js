@@ -2,19 +2,21 @@ import path from 'path';
 import fs from 'fs';
 import mkdir from './utils/mkdir.js';
 
-dotenv.config();
-
 const __dirname = path.resolve();
-export async function block_to_markdown(pageid, n2m) {
+
+export async function block_to_markdown(pageId, buildLocation, n2m) {
+  // make directory
+  mkdir(buildLocation);
+
   // Get markdown blocks from page
-  const mdBlocks = await n2m.pageToMarkdown(pageid);
+  const mdBlocks = await n2m.pageToMarkdown(pageId);
 
   // Convert markdown blocks to markdown string
   const mdString = n2m.toMarkdownString(mdBlocks);
 
   // Write markdown string to file
   fs.writeFile(
-    `${__dirname}/${process.env.OUT_MD}/${pageid}.md`, 
+    `${__dirname}/${buildLocation}/${pageId}.md`, 
     mdString, 
     (err) => {
       if (err) {
