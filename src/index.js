@@ -13,7 +13,7 @@ dotenv.config();
  * 5. argv[4]: build location
  * */ 
 const inputMethod = process.argv[2];
-const pageId = process.argv[3];
+const page = process.argv[3];
 const buildLocation = process.argv[4] ?? 'build';
 
 /** TODO: Validate env variables
@@ -34,12 +34,19 @@ const notion = new Client({
 // Create a new NotionToMarkdown instance
 const n2m = new NotionToMarkdown({ notionClient: notion });
 
-/* Implementations */
-//
-//
-//
-//
-/*                 */
+async function run() {
+  /* Implementations */
+  switch (inputMethod) {
+    case 'page':
+      await method.block_to_markdown(page, buildLocation, n2m);
+      break;
 
-// Methods
-method.block_to_markdown('9c9a0ae8c3ba4334b0b161b9861e9413', n2m);
+    default:
+      console.error(`An error occurred: Invalid command ${inputMethod}`);
+      process.exit(1);
+  }
+
+  console.log(`Completed build to ${buildLocation}`)
+}
+
+run();
