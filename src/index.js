@@ -14,8 +14,14 @@ dotenv.config();
 import * as method from './method.js';
 
 /** TODO: Validate env variables
- * 1. isVaild NOTION_TOKEN?
+ * 1. isValid NOTION_TOKEN?
  */
+
+// isValid NOTION_TOKEN
+if (process.env.NOTION_TOKEN === null) {
+  console.error('TOKEN value does not exist or is invalid.');
+  process.exit(1);
+}
 
 // Create a new Notion client instance
 const notion = new Client({
