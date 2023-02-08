@@ -39,6 +39,13 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
 async function main() {
   /* Implementations */
   switch (inputMethod) {
+    case 'help':
+    case undefined:
+      console.error(`
+        Usage:  node COMMAND PAGE_ID BUILD_LOCATION
+      `);
+      break;
+
     case 'page':
       await method.block_to_markdown(pageId, buildLocation, n2m);
       break;
@@ -47,7 +54,7 @@ async function main() {
       console.error(`An error occurred: Invalid command ${inputMethod}`);
       process.exit(1);
   }
-
+  // FIXME:
   console.log(`Completed build to ${buildLocation}`)
 }
 
