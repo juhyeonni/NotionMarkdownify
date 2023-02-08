@@ -8,12 +8,13 @@ dotenv.config();
  * 2. argv[1]: expect arguments.js
  * 3. argv[2]: method command
  * 4. argv[3]: pageid or blockid
+ * 5. argv[4]: build location
  * */ 
 
 import * as method from './method.js';
 
 /** TODO: Validate env variables
- * 1. 
+ * 1. isVaild NOTION_TOKEN?
  */
 
 // Create a new Notion client instance
