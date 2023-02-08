@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@notionhq/client": "^2.2.3",
+    "fs": "^0.0.1-security",
+    "notion-to-md": "^2.5.5"
+  },
+  "scripts": {
+    "launch": "node src/index.js"
+  },
+  "type": "module",
+  "devDependencies": {
+    "dotenv": "^16.0.3"
+  }
+}
