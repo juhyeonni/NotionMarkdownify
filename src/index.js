@@ -1,6 +1,8 @@
 import { Client } from '@notionhq/client';
 import { NotionToMarkdown } from 'notion-to-md';
 import * as dotenv from 'dotenv';
+import * as method from './method.js';
+
 dotenv.config();
 
 /** TODO: Start-up method setting
@@ -10,8 +12,9 @@ dotenv.config();
  * 4. argv[3]: pageid or blockid
  * 5. argv[4]: build location
  * */ 
-
-import * as method from './method.js';
+const inputMethod = process.argv[2];
+const pageId = process.argv[3];
+const buildLocation = process.argv[4] ?? 'build';
 
 /** TODO: Validate env variables
  * 1. isValid NOTION_TOKEN?
