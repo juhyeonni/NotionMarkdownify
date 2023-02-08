@@ -3,6 +3,10 @@ import { NotionToMarkdown } from 'notion-to-md';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
+/** TODO: Start-up method setting
+ *
+ * */ 
+
 import * as method from './method.js';
 
 // Create a new Notion client instance
