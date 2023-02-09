@@ -16,7 +16,7 @@ export async function block_to_markdown(pageId, buildLocation, n2m) {
 
   // Write markdown string to file
   fs.writeFile(
-    `${__dirname}/${buildLocation}/${pageId}.md`, 
+    `${buildLocation}/${pageId}.md`, 
     mdString, 
     (err) => {
       if (err) {
