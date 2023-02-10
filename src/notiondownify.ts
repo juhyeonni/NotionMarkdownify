@@ -16,6 +16,21 @@ export class NotionDownify {
   }
 
   /**
+   * Take a page from your database and mark it up.
+   * @param databaseID 
+   */
+  async dbDownify(databaseID: string) {
+    // make directory
+    mkdir(databaseID);
+  
+    this.getPageIDs(databaseID).then((pageIDs) => {
+      pageIDs.map((pageID) => {
+        this.savePageToMd(pageID, databaseID);
+      });
+    })
+  }
+
+  /**
    * Get pageIDs from database
    * @param databaseID 
    * @returns pageIDs
@@ -53,5 +68,8 @@ export class NotionDownify {
         }
       },
     );
+    
+    // notify Success
+    console.log(`Successful save as '${pageId}'`)
   }
 }
