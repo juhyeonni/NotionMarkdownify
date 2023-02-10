@@ -1,12 +1,11 @@
-import { Client } from '@notionhq/client';
 import { NotionToMarkdown } from 'notion-to-md';
-import { NotionToMarkdownOptions } from './types';
-import * as dotenv from 'dotenv';
 import fs from 'fs';
 import mkdir from './utils/mkdir';
-dotenv.config();
+import { Client } from '@notionhq/client';
 
-const notion = new Client({ auth: process.env.NOTION_API_KEY });
+interface NotionToMarkdownOptions {
+  notionClient: Client
+}
 
 export class NotionDownify {
   private notionClient;
@@ -50,7 +49,7 @@ export class NotionDownify {
    * @param buildLocation 
    */
   async savePageToMd(pageId: string, buildLocation: string) {
-    const n2m = new NotionToMarkdown({ notionClient: notion });
+    const n2m = new NotionToMarkdown({ notionClient: this.notionClient });
     
     // Get markdown blocks from page
     const mdBlocks = await n2m.pageToMarkdown(pageId);
