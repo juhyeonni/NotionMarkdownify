@@ -24,5 +24,12 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "prettier": "^2.8.4",
     "typescript": "^4.9.5"
-  }
+  },
+  "name": "NotionMarkdownify",
+  "version": "1.0.0",
+  "description": "NotionMarkdownify is a program that allows you to autoconvert a Notion database to Markdown files.",
+  "main": "index.js",
+  "repository": "https://github.com/d556f8/NotionMarkdownify.git",
+  "author": "d556f8 <l.juhyeonni@gmail.com>",
+  "license": "MIT"
 }
