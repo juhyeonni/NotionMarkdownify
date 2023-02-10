@@ -8,13 +8,18 @@ dotenv.config();
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
-export default class NotionDownify {
+export class NotionDownify {
   private notionClient;
 
   constructor(options: NotionToMarkdownOptions) {
     this.notionClient = options.notionClient;
   }
-  
+
+  /**
+   * Get pageIDs from database
+   * @param databaseID 
+   * @returns pageIDs
+   */
   async getPageIDs(databaseID: string): Promise<string[]> {
     const queryData = await this.notionClient.databases.query({
       database_id: databaseID,
@@ -24,12 +29,14 @@ export default class NotionDownify {
     return pageIDs;
   }
 
-  async fileMDDocument(pageId: string, buildLocation: string) {
+  /**
+   * Markdown a page
+   * @param pageId 
+   * @param buildLocation 
+   */
+  async savePageToMd(pageId: string, buildLocation: string) {
     const n2m = new NotionToMarkdown({ notionClient: notion });
     
-    // make directory
-    mkdir(buildLocation);
-  
     // Get markdown blocks from page
     const mdBlocks = await n2m.pageToMarkdown(pageId);
   
@@ -48,27 +55,3 @@ export default class NotionDownify {
     );
   }
 }
-
-
-// Bring DatabaseID
-const databaseID = process.env.DATABASE_ID ?? '';
-
-// Bring BuildLocation
-const buildLocation = 'build';
-
-const a = new NotionDownify({notionClient: notion});
-
-a.getPageIDs(databaseID).then((pageIDs) => {
-  pageIDs.map((pageID) => {
-    a.fileMDDocument(pageID, buildLocation);
-  });
-})
-
-// // Bring BuildLocation
-// const buildLocation = 'build';
-
-// method.getPageIDs(databaseID).then((pageIDs) => {
-//   pageIDs.map((pageID) => {
-//     method.fileMDDocument(pageID, buildLocation);
-//   });
-// });
