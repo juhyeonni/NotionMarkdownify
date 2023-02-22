@@ -1,9 +1,7 @@
-import { Client } from '@notionhq/client';
 import { NotionToMarkdown } from 'notion-to-md';
 import { Client } from '@notionhq/client';
 import fs from 'fs';
 import mkdir from './utils/mkdir';
-dotenv.config();
 
 interface NotionToMarkdownOptions {
   notionClient: Client
@@ -21,12 +19,11 @@ export class NotionDownify {
    * @param databaseID 
    */
   async dbDownify(databaseID: string) {
-    // make directory
-    mkdir(databaseID);
-  
     this.getPageIDs(databaseID).then((pageIDs) => {
       pageIDs.map((pageID) => {
-        this.savePageToMd(pageID, databaseID);
+        // make directory
+        mkdir(pageID);
+        this.savePageToMd(pageID);
       });
     })
   }
@@ -41,7 +38,7 @@ export class NotionDownify {
       database_id: databaseID,
     });
     const pageIDs = queryData.results.map((page) => page.id);
-  
+
     return pageIDs;
   }
 
@@ -50,18 +47,18 @@ export class NotionDownify {
    * @param pageId 
    * @param buildLocation 
    */
-  async savePageToMd(pageId: string, buildLocation: string) {
-    const n2m = new NotionToMarkdown({ notionClient: notion });
-    
+  async savePageToMd(pageId: string) {
+    const n2m = new NotionToMarkdown({ notionClient: this.notionClient });
+
     // Get markdown blocks from page
     const mdBlocks = await n2m.pageToMarkdown(pageId);
-  
+
     // Convert markdown blocks to markdown string
     const mdString = n2m.toMarkdownString(mdBlocks);
-  
+
     // Write markdown string to file
     fs.writeFile(
-      `${buildLocation}/${pageId}.md`,
+      `${pageId}/index.md`,
       mdString,
       (err) => {
         if (err) {
@@ -69,7 +66,7 @@ export class NotionDownify {
         }
       },
     );
-    
+
     // notify Success
     console.log(`Successful save as '${pageId}'`)
   }
