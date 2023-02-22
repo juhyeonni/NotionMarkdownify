@@ -11,9 +11,25 @@ NotionMarkdownify is a program that allows you to autoconvert a Notion page to a
 
   Run the program by typing node index.js in your terminal.
 
-## How it Works
+## Usage
+~~~TypeScript
+import { Client } from '@notionhq/client';
 
-The main program imports the required packages and sets up a new Notion API client. The method module exports a function block_to_markdown which takes in two parameters, a pageid and a NotionToMarkdown object. The function then uses the NotionToMarkdown object to convert the Notion page with the specified pageid to Markdown, and writes the result to a file with the same name as the pageid.
+import { NotionDownify } from './index';
+
+const DATABASE_ID = 'your notion database_id';
+
+const notion = new Client({ 
+  auth: 'your integration token'
+});
+const buildLocati
+
+// passing notion client to option
+const downify = new NotionDownify({notionClient: notion});
+
+// Markdown elements in the database.
+downify.dbDownify(DATABASE_ID, buildLocation);
+~~~
 ## Conclusion
 
 NotionMarkdownify is a useful tool for anyone looking to convert their Notion pages to Markdown. The program is easy to set up and use, and the resulting Markdown files can be used in a variety of ways, such as to embed the pages on a website or to version control the pages with Git.
