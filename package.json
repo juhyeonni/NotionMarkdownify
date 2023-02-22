@@ -7,9 +7,6 @@
     "fs": "^0.0.1-security",
     "notion-to-md": "^2.5.5"
   },
-  "scripts": {
-    "launch": "node src/index.js"
-  },
   "devDependencies": {
     "@types/node": "^18.13.0",
     "@typescript-eslint/eslint-plugin": "^5.51.0",
@@ -25,7 +22,7 @@
     "prettier": "^2.8.4",
     "typescript": "^4.9.5"
   },
-  "name": "NotionMarkdownify",
+  "name": "notion-markdownify",
   "version": "1.0.0",
   "description": "NotionMarkdownify is a program that allows you to autoconvert a Notion database to Markdown files.",
   "main": "index.js",
