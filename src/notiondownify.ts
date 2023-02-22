@@ -1,12 +1,13 @@
 import { Client } from '@notionhq/client';
 import { NotionToMarkdown } from 'notion-to-md';
-import { NotionToMarkdownOptions } from './types';
-import * as dotenv from 'dotenv';
+import { Client } from '@notionhq/client';
 import fs from 'fs';
 import mkdir from './utils/mkdir';
 dotenv.config();
 
-const notion = new Client({ auth: process.env.NOTION_API_KEY });
+interface NotionToMarkdownOptions {
+  notionClient: Client
+}
 
 export class NotionDownify {
   private notionClient;
