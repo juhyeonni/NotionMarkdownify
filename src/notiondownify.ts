@@ -19,6 +19,13 @@ export class NotionDownify {
    * @param databaseID 
    */
   async dbDownify(databaseID: string) {
+    const response = await this.notionClient.databases.retrieve({ database_id: databaseID });
+    // FIXME: 
+    // 왜 안됨??
+    // ttts에서의 문제는 없는데, 왜 여기서 안되는지 확인해야됨
+
+    const categorie = response.title[0].plain_text;
+
     this.getPageIDs(databaseID).then((pageIDs) => {
       pageIDs.map((pageID) => {
         // make directory
