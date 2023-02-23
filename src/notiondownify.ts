@@ -23,6 +23,15 @@ export class NotionDownify {
     // FIXME: 
     // 왜 안됨??
     // ttts에서의 문제는 없는데, 왜 여기서 안되는지 확인해야됨
+    // TODO:
+    // 각 마크다운에 
+    // title, date, author, tags, categories를 추가한다.
+    // 해당 코드는 ttts에 정리 해두었다.
+    // 모두 작성하고 실제로 기동가능한 코드를 만들었지만, 
+    // Commit을 안한탓에 모두 날아가버렸다.....
+    // 반드시 작업을 완료하면 commit을 하길....바란다...
+
+
 
     const categorie = response.title[0].plain_text;
 
