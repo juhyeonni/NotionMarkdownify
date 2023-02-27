@@ -88,7 +88,7 @@ export class NotionDownify {
    * @param databaseID 
    * @returns pageIDs
    */
-  async getPageIDs(databaseID: string): Promise<string[]> {
+  private async getPageIDs(databaseID: string): Promise<string[]> {
     const queryData = await this.notionClient.databases.query({
       database_id: databaseID,
     });
@@ -100,9 +100,9 @@ export class NotionDownify {
   /**
    * Markdown a page
    * @param pageId 
-   * @param buildLocation 
+   * @param pageInfo
    */
-  async savePageToMd(pageId: string) {
+  private async savePageToMd(pageId: string, pageInfo: PageInfo): Promise<void> {
     const n2m = new NotionToMarkdown({ notionClient: this.notionClient });
 
     // Get markdown blocks from page
