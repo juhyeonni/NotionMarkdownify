@@ -75,9 +75,6 @@ export class NotionDownify {
         category,
       }
 
-    this.getPageIDs(databaseID).then((pageIDs) => {
-      pageIDs.map((pageID) => {
-        // make directory
       mkdir(pageID);
       this.savePageToMd(pageID, pageInfo);
     }
