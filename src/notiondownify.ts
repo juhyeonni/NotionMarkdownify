@@ -8,7 +8,7 @@ interface NotionToMarkdownOptions {
   notionClient: Client
 }
 
-interface UserInfo {
+interface PageInfo {
   title: string;
   date: string;
   author: string;
@@ -33,8 +33,8 @@ export class NotionDownify {
     return formattedDate;
   }
 
-  private toStringUserInfo(userInfo: UserInfo) {
-    const { title, date, author, tags, category } = userInfo;
+  private toStringPageInfo(pageInfo: PageInfo) {
+    const { title, date, author, tags, category } = pageInfo;
     const tagsStr = tags.join(' ');
     return (
       `---\n` +
@@ -109,20 +109,20 @@ export class NotionDownify {
     const mdBlocks = await n2m.pageToMarkdown(pageId);
 
     // Convert markdown blocks to markdown string
-    const mdString = n2m.toMarkdownString(mdBlocks);
+    const mdString = await n2m.toMarkdownString(mdBlocks);
 
-    // Write markdown string to file
-    fs.writeFile(
-      `${pageId}/index.md`,
-      mdString,
-      (err) => {
-        if (err) {
-          throw new Error(`An error occurred: ${err}. Please report it to the developer.`);
-        }
-      },
-    );
+    try {
+      // Write markdown string to file
+      await fs.promises.writeFile(
+        `${pageId}/index.md`,
+        this.toStringPageInfo(pageInfo) + mdString,
+        { encoding: 'utf-8' }
+      );
 
-    // notify Success
-    console.log(`Successful save as '${pageId}'`)
+      // notify Success
+      console.log(`Successful save as '${pageId}/index.md'`)
+    } catch (e) {
+      console.error(`Error writing file: ${e}`)
+    }
   }
 }
