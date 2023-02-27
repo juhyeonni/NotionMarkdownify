@@ -2,9 +2,18 @@ import { NotionToMarkdown } from 'notion-to-md';
 import { Client } from '@notionhq/client';
 import fs from 'fs';
 import mkdir from './utils/mkdir';
+import { DatabaseObjectResponse, PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
 interface NotionToMarkdownOptions {
   notionClient: Client
+}
+
+interface UserInfo {
+  title: string;
+  date: string;
+  author: string;
+  tags: string[];
+  category: string;
 }
 
 export class NotionDownify {
@@ -12,6 +21,30 @@ export class NotionDownify {
 
   constructor(options: NotionToMarkdownOptions) {
     this.notionClient = options.notionClient;
+  }
+  /**
+   * ISO Date to 'yyyy-mm-dd HH:ii:ss'
+   * @param date 
+   * @returns 
+   */
+  private isoToFormatted(date: string) {
+    const beforeDate = new Date(date);
+    const formattedDate = beforeDate.toISOString().replace('T', ' ').slice(0, 19);
+    return formattedDate;
+  }
+
+  private toStringUserInfo(userInfo: UserInfo) {
+    const { title, date, author, tags, category } = userInfo;
+    const tagsStr = tags.join(' ');
+    return (
+      `---\n` +
+      `title: '${title}'\n` +
+      `date: '${date}'\n` +
+      `author: '${author}'\n` +
+      `tags: ${tagsStr}\n` +
+      `categories: '${category}'\n` +
+      `---\n`
+    );
   }
 
   /**
