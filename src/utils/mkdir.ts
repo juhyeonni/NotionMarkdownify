@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import fs from 'fs';
 
-export default function mkdir(location: string) {
+function mkdir(location: string) {
   fs.mkdir(location, { recursive: false }, (err) => {
     if (err) {
       if (err.code === 'EEXIST') {
@@ -12,3 +12,5 @@ export default function mkdir(location: string) {
     }
   });
 }
+
+export default mkdir;
