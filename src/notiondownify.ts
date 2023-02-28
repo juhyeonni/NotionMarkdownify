@@ -52,8 +52,11 @@ export class NotionDownify {
    * @param databaseID 
    * The databaseID is needed to retrieve the information in the database and the information on each page.
    */
-  public async dbDownify(databaseID: string): Promise<void> {
+  public async dbDownify(databaseID: string, contentLocation: string = '.'): Promise<void> {
     const res = await this.notionClient.databases.retrieve({ database_id: databaseID }) as DatabaseObjectResponse;
+
+    mkdir(contentLocation);
+
     const category = res.title[0].plain_text;
 
     const pageIDs = await this.getPageIDs(databaseID);
@@ -75,8 +78,8 @@ export class NotionDownify {
         category,
       }
 
-      mkdir(pageID);
-      this.savePageToMd(pageID, pageInfo);
+      mkdir(`${contentLocation}/${pageID}`);
+      this.savePageToMd(pageID, pageInfo, contentLocation);
     }
   }
 
@@ -99,7 +102,7 @@ export class NotionDownify {
    * @param pageId 
    * @param pageInfo
    */
-  private async savePageToMd(pageId: string, pageInfo: PageInfo): Promise<void> {
+  private async savePageToMd(pageId: string, pageInfo: PageInfo, contentLocation: string): Promise<void> {
     const n2m = new NotionToMarkdown({ notionClient: this.notionClient });
 
     // Get markdown blocks from page
@@ -111,7 +114,7 @@ export class NotionDownify {
     try {
       // Write markdown string to file
       await fs.promises.writeFile(
-        `${pageId}/index.md`,
+        `${contentLocation}/${pageId}/index.md`,
         this.toStringPageInfo(pageInfo) + mdString,
         { encoding: 'utf-8' }
       );
