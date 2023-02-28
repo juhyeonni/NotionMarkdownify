@@ -2,34 +2,32 @@
 
 # NotionMarkdownify
 
-NotionMarkdownify is a program that allows you to autoconvert a Notion page to a Markdown file. The program is composed of two source codes, one is the main program, and the other is the method module.
+NotionMarkdownify is a program that converts notion pages stored in the Notion database into markdown files.
 ## Getting Started
 
-  Install the required packages by running npm install in your terminal.
+  Run `npm install` or `yarn` in the terminal to install the required packages.
 
-  Set up your Notion API token by adding it to your .env file. You can find more information on how to obtain your API token in the Notion API documentation.
+  Set up a Notion API token by adding it to your .env file. More information on how to get an API token can be found in the Notion API documentation.
 
-  Run the program by typing node index.js in your terminal.
 
 ## Usage
 ~~~TypeScript
 import { Client } from '@notionhq/client';
-
 import { NotionDownify } from './index';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
-const DATABASE_ID = 'your notion database_id';
+const {
+  NOTION_API_KEY = '',
+  DATABASE_ID = '',
+  CONTENT_LOCATION = ''
+} = process.env;
 
-const notion = new Client({ 
-  auth: 'your integration token'
-});
-const buildLocati
+// A NOTION_API_KEY is required to create a Client object.
+const notion = new Client({ auth: NOTION_API_KEY });
 
-// passing notion client to option
-const downify = new NotionDownify({notionClient: notion});
+const downify = new NotionDownify({ notionClient: notion });
 
-// Markdown elements in the database.
-downify.dbDownify(DATABASE_ID, buildLocation);
+downify.dbDownify(DATABASE_ID, CONTENT_LOCATION);
 ~~~
-## Conclusion
-
-NotionMarkdownify is a useful tool for anyone looking to convert their Notion pages to Markdown. The program is easy to set up and use, and the resulting Markdown files can be used in a variety of ways, such as to embed the pages on a website or to version control the pages with Git.
+![image](https://user-images.githubusercontent.com/64972038/221720439-2a913cf9-dced-42d8-8fa0-6b3dcf5a6742.png)
