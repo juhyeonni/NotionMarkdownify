@@ -8,12 +8,12 @@
   ],
   "rules": {
     "import/extensions": [
-       "error",
-       "ignorePackages",
-       {
-         "js": "never",
-         "ts": "never"
-       }
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "ts": "never"
+      }
     ]
- }
+  }
 }
