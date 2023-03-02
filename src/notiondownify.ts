@@ -1,6 +1,5 @@
 import { NotionToMarkdown } from 'notion-to-md';
-import { Client } from '@notionhq/client';
-import fs from 'fs';
+import * as fs from 'fs';
 import mkdir from './utils/mkdir';
 import { DatabaseObjectResponse, PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 

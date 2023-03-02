@@ -1,5 +1,4 @@
-/* eslint-disable no-console */
-import fs from 'fs';
+import * as fs from 'fs';
 
 function mkdir(location: string) {
   fs.mkdir(location, { recursive: false }, (err) => {
