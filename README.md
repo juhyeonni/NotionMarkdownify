@@ -8,9 +8,9 @@ NotionMarkdownify is a program that converts notion pages stored in the Notion d
   Run `npm install` or `yarn` in the terminal to install the required packages.
   
   ~~~Bash
-    npm install notion-markdownify
-    # or..
-    yarn add notion-markdownify
+  npm install notion-markdownify
+  # or..
+  yarn add notion-markdownify
   ~~~
   Set up a Notion API token by adding it to your .env file. More information on how to get an API token can be found in the Notion API documentation.
 
