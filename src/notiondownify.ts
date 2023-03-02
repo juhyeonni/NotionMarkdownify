@@ -2,18 +2,7 @@ import { NotionToMarkdown } from 'notion-to-md';
 import * as fs from 'fs';
 import mkdir from './utils/mkdir';
 import { DatabaseObjectResponse, PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
-
-interface NotionToMarkdownOptions {
-  notionClient: Client
-}
-
-interface PageInfo {
-  title: string;
-  date: string;
-  author: string;
-  tags: string[];
-  category: string;
-}
+import { NotionToMarkdownOptions, PageInfo } from './types';
 
 export class NotionDownify {
   private notionClient;
