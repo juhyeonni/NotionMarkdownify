@@ -52,11 +52,11 @@ export class NotionDownify {
       const res = await this.notionClient.pages.retrieve({ page_id: pageID }) as PageObjectResponse;
       const properties = res.properties;
 
-      const title = properties['Title'].type === 'title' ? properties['Title'].title[0].plain_text : '';
+      const title = properties['Name'].type === 'title' ? properties['Name'].title[0].plain_text : '';
       const date = this.isoToFormatted(res.last_edited_time);
       const authorID = res.created_by.id;
       const author = (await this.notionClient.users.retrieve({ user_id: authorID })).name ?? '';
-      const tags = properties['tags'].type === 'multi_select' ? properties['tags'].multi_select.map(tag => tag.name) : [];
+      const tags = properties['Tags'].type === 'multi_select' ? properties['Tags'].multi_select.map(tag => tag.name) : [];
 
       const pageInfo: PageInfo = {
         title,
