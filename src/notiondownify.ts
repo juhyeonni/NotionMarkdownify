@@ -97,7 +97,7 @@ export class NotionDownify {
     const mdBlocks = await n2m.pageToMarkdown(pageId);
 
     // Convert markdown blocks to markdown string
-    const mdString = await n2m.toMarkdownString(mdBlocks);
+    const mdString = n2m.toMarkdownString(mdBlocks);
 
     try {
       // Write markdown string to file
