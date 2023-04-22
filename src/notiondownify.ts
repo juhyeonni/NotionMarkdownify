@@ -45,7 +45,7 @@ export class NotionDownify {
 
     mkdir(contentLocation);
 
-    const category = res.title[0].plain_text;
+    const category = res.title[0].plain_text.replace(' ', '\u00a0');
 
     const pageIDs = await this.getPageIDs(databaseID);
     for (const pageID of pageIDs) {
@@ -97,7 +97,7 @@ export class NotionDownify {
     const mdBlocks = await n2m.pageToMarkdown(pageId);
 
     // Convert markdown blocks to markdown string
-    const mdString = await n2m.toMarkdownString(mdBlocks);
+    const mdString = n2m.toMarkdownString(mdBlocks);
 
     try {
       // Write markdown string to file
