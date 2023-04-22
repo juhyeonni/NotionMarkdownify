@@ -45,7 +45,7 @@ export class NotionDownify {
 
     mkdir(contentLocation);
 
-    const category = res.title[0].plain_text;
+    const category = res.title[0].plain_text.replace(' ', '\u00a0');
 
     const pageIDs = await this.getPageIDs(databaseID);
     for (const pageID of pageIDs) {
