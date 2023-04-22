@@ -1,6 +1,6 @@
 {
   "name": "notion-markdownify",
-  "version": "0.0.10",
+  "version": "0.1.0",
   "description": "NotionMarkdownify is a program that allows you to autoconvert a Notion database to Markdown files.",
   "author": "d556f8 <l.juhyeonni@gmail.com>",
   "license": "MIT",
@@ -14,7 +14,7 @@
     "build": "tsc -p tsconfig.json",
     "build-publish": "yarn build && node setupPackage.js && cd dist && yarn publish",
     "test": "node ./dist/test.js",
-    "build-clean": "rm -rf ./dist"
+    "clean-build": "rm -rf ./dist"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.4",
